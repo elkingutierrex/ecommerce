@@ -1,0 +1,38 @@
+#name{
+    color:black;
+    font-size: large; 
+    text-align: center;
+    text-transform: capitalize
+
+}
+
+#price{color: blue;
+    text-align: right
+}
+
+#image {
+    width: 75;
+    height: 75px;
+    border-radius: 10px;
+    opacity: 0.8; 
+}
+
+
+.background_ppal{
+    background-color: rgba(255, 255, 255, 0.644)
+}
+
+
+
+
+
+div .item_e :hover{
+    color: #f33959;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.582)
+    
+  }
+
+.background_rappi{
+    background-color: #f33959
+} 

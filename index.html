@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="" lang="en" ng-app="appecommerce">
+<!--<![endif]-->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>e-commerce</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Whasher dron" />
+    <meta name="keywords" content="css3, css-only, fullscreen, background, slideshow, images, content" />
+    <meta name="author" content="elkingutierrex" />
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+    <link rel="stylesheet" type="text/css" href="css\fonts\rappi.css" />
+    <link rel="stylesheet" type="text/css" href="vendorReference\fontawesome-free-5.8.2-web\css\all.min.css" />
+
+    <link href="vendorReference\alertifyjs\css\alertify.min.css" rel="stylesheet" />
+    <link href="vendorReference\alertifyjs\css\themes\default.min.css" rel="stylesheet" />
+    <link href="vendorReference\alertifyjs\css\themes\semantic.rtl.min.css" rel="stylesheet" />
+
+
+    <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            var counterExecution = 0;
+
+            setInterval(function () {
+
+                counterExecution++;
+                var directionRigth = ((counterExecution % 2) == 0);
+                if (!directionRigth) {
+                    $("#dron").animate({
+                        'margin-left': '90%'
+                    }, 7000);
+                } else {
+                    $("#dron").animate({
+                        'margin-left': '0%'
+                    }, 7000);
+                }
+            }, 0);
+        });
+    </script>
+</head>
+
+
+<body id="page" ng-controller="app">
+
+    <script type="application/javascript">
+        var VERSION_APP = "1.0.0";
+    </script>
+
+    <ul class="cb-slideshow">
+        <li><span>Image 01</span>
+            <div>
+                <h3>Inn·ov·a·tion</h3>
+            </div>
+        </li>
+        <li><span>Image 02</span>
+            <div>
+                <h3>buil·d·ings</h3>
+            </div>
+        </li>
+        <li><span>Image 03</span>
+            <div>
+                <h3>Smart·ci·ty</h3>
+            </div>
+        </li>
+        <li><span>Image 04</span>
+            <div>
+                <h3>I·o·T</h3>
+            </div>
+        </li>
+        <li><span>Image 05</span>
+            <div>
+                <h3>Tre·nd</h3>
+            </div>
+        </li>
+        <li><span>Image 06</span>
+            <div>
+                <h3>Acce·si·bili·ty</h3>
+            </div>
+        </li>
+    </ul>
+
+    <div class="pos-f-t" style="position: relative">
+        <nav class="navbar navbar-dark background_rappi" style="color: white;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color: white;"></span>
+                <span style="color: white;"> <b>El Baratón</b></span>
+            </button>
+            <ul>
+                <div class="col-md-12" ng-click="modalShow('modalLogin')">
+                    <li>
+                        <i class="far fa-user-circle" style="font-size: xx-large; color:white">
+                        </i>
+                        {{login.username}}
+                    </li>
+                </div>
+            </ul>
+
+
+        </nav>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4 row">
+                <div class="col-md-3">
+                    <h5 class="text-white h4">e-commerce</h5>
+                    <span class="text-muted">Ease to buy.</span>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Category</label>
+                        </div>
+                        <select class="form-control ng-pristine ng-valid ng-touched ng-dirty"
+                            ng-options="opc.id as opc.name for opc in categories" ng-model="objFilter.category"
+                            ng-change="filterLevels('category',objFilter.category )" required="required">
+                            <option value="">Select / All </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="input-group mb-3" ng-show=(arraySubLevel)>
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Level</label>
+                        </div>
+                        <select class="form-control ng-pristine ng-valid ng-touched ng-dirty"
+                            ng-options="opc.id as opc.name for opc in arraySubLevel" ng-model="objFilter.sublevel"
+                            required="required" ng-change="filterLevels('level',objFilter.sublevel )">
+                            <option value="">Select / All </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group mb-3" ng-show=(arraySubLevel2)>
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Sub-level</label>
+                        </div>
+                        <select class="form-control ng-pristine ng-valid ng-touched ng-dirty"
+                            ng-options="opc.id as opc.name for opc in arraySubLevel2" ng-model="objFilter.sublevel2"
+                            required="required" ng-change="filterLevels('sublevel',objFilter.sublevel2)">
+
+                            <option value="">Select / All </option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container background_ppal">
+
+        <!-- Codrops top bar -->
+        <div class="codrops-top">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- <img src="images/rappi.png" id="dron" width="120" height="100" alt="red"> -->
+                </div>
+            </div>
+            <div class="clr"></div>
+        </div>
+
+        <div class="container class">
+            <div class="col-md-12" style="background-color:  rgba(255, 255, 255, 0.644); margin-top: 10px">
+                <div class="panel panel-default">
+                    <div class="">
+                        <!-- boddy -->
+                        <div class="container col-md-12">
+                            <div class="">
+                                <!-- contenedor lateral -->
+                                <div class="col-md-12 row">
+                                    <div class="col-md-4 item_e" ng-repeat="item in filerProducts">
+                                        <div class="row"
+                                            style="border: 1px solid gray; white-space: nowrap; margin: 10px;border-radius: 10px; padding: 10px">
+
+                                            <div class="col-5">
+                                                <img src="images/avatar_ecommerce.jpg" id="image" data-toggle="tooltip"
+                                                    data-placement="top" title="{{item.name}}">
+                                            </div>
+
+                                            <div class="col-7">
+                                                <div class="col-12" id="name">
+                                                    <span>{{item.name}}</span>
+                                                </div>
+                                                <div class="col-12" id="price">
+                                                    <span>{{item.price}}</span>
+                                                </div>
+                                                <div class="col-12">
+                                                    <i class="fas fa-times" style="color: red"
+                                                        ng-show="!item.available">Available</i>
+                                                    <i class="fas fa-cart-plus" ng-show="item.available"
+                                                        style="color: green"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <!-- <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
+    <script src="vendorReference\alertifyjs\alertify.min.js"></script>
+    <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+    <script src="vendorReference\fontawesome-free-5.8.2-web\js\all.min.js"></script>
+
+    <!-- <script src="js/particles.js"></script> -->
+
+    <!-- directives -->
+    <!-- <script src="directives\ValidacionautoDir\angular-input-masks-standalone.min.js"></script> -->
+    <!-- <script src="directives\ValidacionautoDir\validacionAutoDirPet.js"></script> -->
+    <!-- <script src="directives\OnlyNumbers\onlynumbers.js"></script> -->
+
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="vendorReference/lodash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    </div>
+
+    <!-- Ctrl -->
+
+    <script src="js\categories.json"></script>
+    <script src="products.json"></script>
+    <script src="app.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+<!-- Modal CarritoDeCompras -->
+<div class="modal fade" id="modalShopping" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{objModalHeader.modalShopping}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal InfoProducto-->
+<div class="modal fade" id="modalProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{objModalHeader.modalProduct}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal login-->
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{objModalHeader.modalLogin}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Enter your mobile number..."
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">name</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Name / Username" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="col-md-12" style="text-align: center">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
